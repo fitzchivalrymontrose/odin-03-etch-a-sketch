@@ -1,0 +1,68 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-text {
+    font-size: 36px;
+}
+
+.content-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.settings-controls {
+
+}
+
+.clear-box {
+    font-size: 18px;
+    padding: .5em 2em;
+}
+
+.sketch-box-outer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1000px;
+    width: 1000px;
+    background-color: gray;
+    border: 2px solid darkslategray;
+}
+
+.sketch-box-inner {
+    height: 960px;
+    width: 960px;
+    flex-shrink: 0;
+    background-color: #fff;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.square {
+    border: 1px solid gray;
+}
+
+footer {
+
+}
+
+.footer-text {
+
+}
