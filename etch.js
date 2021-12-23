@@ -15,6 +15,7 @@ function fillSquare(e) {
 function switchClasses (e) {
 //    e.target.classList.toggle('square');
     e.target.classList.toggle('square-changed');
+    e.target.removeEventListener('mouseover', switchClasses);
 }
 
 // const gridSquare = document.createElement('div');
