@@ -59,6 +59,16 @@ header {
     border: 1px solid gray;
 }
 
+.square-changed {
+    border: none;
+    background-color: #000;
+}
+
+#square-changed {
+    border: none;
+    background-color: #000;
+}
+
 footer {
 
 }
