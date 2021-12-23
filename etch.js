@@ -2,11 +2,31 @@ const sketchBox = document.querySelector('.sketch-box-inner');
 
 sketchBox.appendChild(makeGrid(16));
 
+let squares = document.querySelectorAll('.square');
+    for (let i = 0; i < squares.length; i++) {
+        squares[i].addEventListener('mouseover', switchClasses);
+    }
 
-const squares = document.querySelectorAll('.square');
-for (let i = 0; i < squares.length; i++) {
-    squares[i].addEventListener('mouseover', switchClasses);
+const clearBtn = document.querySelector('button');
+clearBtn.addEventListener('click', makeNewGrid);
+
+function makeNewGrid () {
+    const size = prompt('Size of Grid?');
+    const item = sketchBox.querySelector('.grid');
+    sketchBox.replaceChild(makeGrid(size), item);
+    
+    for (let i = 0; i < squares.length; i++) {
+        squares[i].removeEventListener('mouseover', switchClasses);
+    }
+
+    squares = document.querySelectorAll('.square');
+    for (let i = 0; i < squares.length; i++) {
+        squares[i].addEventListener('mouseover', switchClasses);
+    }
 }
+
+// Change color of square
+
 
 function fillSquare(e) {
     e.target.id = 'square-changed';
