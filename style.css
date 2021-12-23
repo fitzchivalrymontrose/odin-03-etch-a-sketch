@@ -24,13 +24,25 @@ header {
     justify-content: space-around;
 }
 
+button {
+    font-size: 18px;
+    padding: .5em 2em;
+}
+
 .settings-controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 20px;
 
 }
 
 .clear-box {
-    font-size: 18px;
-    padding: .5em 2em;
+    
+}
+
+.button-change-random {
+
 }
 
 .sketch-box-outer {
