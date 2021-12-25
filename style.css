@@ -72,7 +72,7 @@ button {
 }
 
 .square-changed {
-    border: none;
+    border: 1px solid gray;
     background-color: #000;
 }
 

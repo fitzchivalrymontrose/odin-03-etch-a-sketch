@@ -50,6 +50,7 @@ btnClassic.addEventListener('click', changeClassic);
 function changeClassic(e) {
     console.log(e.target);
     for (let i = 0; i < squares.length; i++) {
+        squares[i].removeEventListener('mouseover', eraseSquare);
         squares[i].removeEventListener('mouseover', switchClasses);
         squares[i].removeEventListener('mouseover', bgRandomColor);
         squares[i].removeEventListener('mouseover', fadeIn);
@@ -69,6 +70,7 @@ btnChangeRandom.addEventListener('click', changeBgRandom);
 
 function changeBgRandom (e) {
     for (let i = 0; i < squares.length; i++) {
+        squares[i].removeEventListener('mouseover', eraseSquare);
         squares[i].removeEventListener('mouseover', switchClasses);
         squares[i].removeEventListener('mouseover', fadeIn);
         squares[i].removeEventListener('mouseover', changerClassic);
@@ -95,6 +97,7 @@ const fadeBtn = document.querySelector('.button-change-fade');
 fadeBtn.addEventListener('click', changeFadeBrush);
 function changeFadeBrush (e) {
     for (let i = 0; i < squares.length; i++) {
+        squares[i].removeEventListener('mouseover', eraseSquare);
         squares[i].removeEventListener('mouseover', switchClasses);
         squares[i].removeEventListener('mouseover', bgRandomColor);
         squares[i].removeEventListener('mouseover', changerClassic);
@@ -102,13 +105,27 @@ function changeFadeBrush (e) {
     }
 }
 function fadeIn (e) {
-    e.target.style.backgroundColor = 'gray';
-    sketchBoxBorder.style.backgroundColor = 'gray';
+    e.target.style.backgroundColor = 'darkgray';
+    sketchBoxBorder.style.backgroundColor = 'darkgray';
     e.target.removeEventListener('click', fadeIn);
 }
 
-
-
+// eraser button
+const eraserBtn = document.querySelector('.button-eraser');
+eraserBtn.addEventListener('click', turnOnEraser);
+function turnOnEraser(e) {
+    for (let i = 0; i < squares.length; i++) {
+        squares[i].removeEventListener('mouseover', switchClasses);
+        squares[i].removeEventListener('mouseover', bgRandomColor);
+        squares[i].removeEventListener('mouseover', changerClassic);
+        squares[i].removeEventListener('mouseover', fadeIn );
+        squares[i].addEventListener('mouseover', eraseSquare);
+    }
+}
+function eraseSquare(e) {
+    e.target.style.backgroundColor = 'white';
+    e.target.removeEventListener('mouseover', eraseSquare);
+}
 
 
 // generate grid
