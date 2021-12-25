@@ -132,8 +132,8 @@ function eraseSquare(e) {
 function makeSquare (size) {
     const gridSquare = document.createElement('div');
     gridSquare.classList.add('square');    
-    gridSquare.style.width = `${960 / size}px`;
-    gridSquare.style.height = `${960 / size}px`;
+    gridSquare.style.width = `${600 / size}px`;
+    gridSquare.style.height = `${600 / size}px`;
     return gridSquare;
 }
 function makeColumn (size) {

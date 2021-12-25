@@ -13,15 +13,19 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 80px;
 }
 
 .header-text {
     font-size: 36px;
+    background-color: lightslategray;
 }
 
 .content-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 6em;
+    margin: 1.5em 0;
 }
 
 button {
@@ -33,6 +37,7 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    
     gap: 20px;
 
 }
@@ -49,15 +54,15 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 1000px;
-    width: 1000px;
+    height: 640px;
+    width: 640px;
     background-color: gray;
     border: 2px solid darkslategray;
 }
 
 .sketch-box-inner {
-    height: 960px;
-    width: 960px;
+    height: 600px;
+    width: 600px;
     flex-shrink: 0;
     background-color: #fff;
 }
