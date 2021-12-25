@@ -13,6 +13,7 @@
 //////////////////////////////////////////////////////
 
 const sketchBox = document.querySelector('.sketch-box-inner');
+const sketchBoxBorder = document.querySelector('.sketch-box-outer');
 
 sketchBox.appendChild(makeGrid(16));
 
@@ -21,9 +22,11 @@ let squares = document.querySelectorAll('.square');
         squares[i].addEventListener('mouseover', switchClasses);
     }
 
+
+
+// new grid button 
 const clearBtn = document.querySelector('button');
 clearBtn.addEventListener('click', makeNewGrid);
-
 function makeNewGrid () {
     const size = prompt('Size of Grid?');
     const item = sketchBox.querySelector('.grid');
@@ -36,22 +39,39 @@ function makeNewGrid () {
         squares[i].addEventListener('mouseover', switchClasses);
     }
 }
-
 function switchClasses (e) {
     e.target.classList.toggle('square-changed');
     e.target.removeEventListener('mouseover', switchClasses);
 }
 
+// classic black button
+const btnClassic = document.querySelector('.button-classic-black');
+btnClassic.addEventListener('click', changeClassic);
+function changeClassic(e) {
+    console.log(e.target);
+    for (let i = 0; i < squares.length; i++) {
+        squares[i].removeEventListener('mouseover', switchClasses);
+        squares[i].removeEventListener('mouseover', bgRandomColor);
+        squares[i].removeEventListener('mouseover', fadeIn);
+        squares[i].addEventListener('mouseover', changerClassic);
+    }
+}
+function changerClassic(e) {
+    e.target.style.backgroundColor = 'black';
+    sketchBoxBorder.style.backgroundColor = 'black';
+    e.target.classList.value = 'square-changed';
+    e.target.removeEventListener('click', changerClassic);
+}
 
-
-
+// random color button
 const btnChangeRandom = document.querySelector('.button-change-random');
 btnChangeRandom.addEventListener('click', changeBgRandom);
-
 
 function changeBgRandom (e) {
     for (let i = 0; i < squares.length; i++) {
         squares[i].removeEventListener('mouseover', switchClasses);
+        squares[i].removeEventListener('mouseover', fadeIn);
+        squares[i].removeEventListener('mouseover', changerClassic);
         squares[i].addEventListener('mouseover', bgRandomColor);
     }
 }
@@ -59,8 +79,10 @@ function changeBgRandom (e) {
 function bgRandomColor (e) {
     const rgbColor = rgbRandom();
     e.target.style.backgroundColor = rgbColor;
-}
+    sketchBoxBorder.style.backgroundColor = rgbColor;
 
+
+}
 function rgbRandom () {
     const r = Math.floor(Math.random() * 256);
     const g = Math.floor(Math.random() * 256);
@@ -68,13 +90,28 @@ function rgbRandom () {
     return `rgb(${r}, ${g}, ${b})`;
 }
 
+// darken by 10 percent each pass button
+const fadeBtn = document.querySelector('.button-change-fade');
+fadeBtn.addEventListener('click', changeFadeBrush);
+function changeFadeBrush (e) {
+    for (let i = 0; i < squares.length; i++) {
+        squares[i].removeEventListener('mouseover', switchClasses);
+        squares[i].removeEventListener('mouseover', bgRandomColor);
+        squares[i].removeEventListener('mouseover', changerClassic);
+        squares[i].addEventListener('mouseover', fadeIn );
+    }
+}
+function fadeIn (e) {
+    e.target.style.backgroundColor = 'gray';
+    sketchBoxBorder.style.backgroundColor = 'gray';
+    e.target.removeEventListener('click', fadeIn);
+}
 
 
 
 
 
-
-
+// generate grid
 function makeSquare (size) {
     const gridSquare = document.createElement('div');
     gridSquare.classList.add('square');    
@@ -82,7 +119,6 @@ function makeSquare (size) {
     gridSquare.style.height = `${960 / size}px`;
     return gridSquare;
 }
-
 function makeColumn (size) {
     const column = document.createElement('div');
     for (let i = 0; i < size; i++) {
@@ -90,7 +126,6 @@ function makeColumn (size) {
     }
     return column;
 }
-
 function makeGrid(size) {
     const grid = document.createElement('div');
     grid.classList.add('grid');
