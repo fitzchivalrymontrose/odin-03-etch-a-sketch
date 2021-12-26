@@ -24,29 +24,6 @@ for (let i = 0; i < squares.length; i++) {
     squares[i].addEventListener('mouseover', changerClassic);
 }
 
-function changeBrushTo (brush) {
-    clearListeners(); 
-    switch (currentBrush) {
-        case 'classic': this.addEventListener('mouseover', changerClassic);
-                        break;
-        case 'rainbow': this.addEventListener('mouseover', bgRandomColor);
-                        break;
-        case 'fade': this.addEventListener('mouseover', fadeIn);
-                        break;
-        case 'eraser': this.addEventListener('mouseover', eraseSquare);
-                       break;
-        default: break;
-    }
-}
-function clearListeners () {
-    for (let i = 0; i < squares.length; i++) {
-        squares[i].removeEventListener('mouseover', eraseSquare);
-        //squares[i].removeEventListener('mouseover', switchClasses);
-        squares[i].removeEventListener('mouseover', bgRandomColor);
-        squares[i].removeEventListener('mouseover', fadeIn);
-        squares[i].removeEventListener('mouseover', changerClassic);
-    }
-}
 //
 /// new grid button 
 const clearBtn = document.querySelector('button');
@@ -55,9 +32,6 @@ function makeNewGrid () {
     const size = prompt('Size of Grid?');
     const item = sketchBox.querySelector('.grid');
     sketchBox.replaceChild(makeGrid(size), item);
-    for (let i = 0; i < squares.length; i++) {
-        squares[i].removeEventListener('mouseover', changerClassic);
-    }
     squares = document.querySelectorAll('.square');
     for (let i = 0; i < squares.length; i++) {
         //squares[i].addEventListener('mouseover', switchClasses);
