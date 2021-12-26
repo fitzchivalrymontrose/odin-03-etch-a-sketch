@@ -38,26 +38,33 @@ for (let i = 0; i < squares.length; i++) {
 const clearBtn = document.querySelector('button');
 clearBtn.addEventListener('click', makeNewGrid);
 function makeNewGrid () {
-    const size = prompt('Size of Grid?');
-    const item = sketchBox.querySelector('.grid');
-    sketchBox.replaceChild(makeGrid(size), item);
-    squares = document.querySelectorAll('.square');
-    for (let i = 0; i < squares.length; i++) {
+    const size = prompt('Size of Grid? Enter a number 1-100.');
+    console.log(size);
+    if (size <= 100 && size > 0) {
+        const item = sketchBox.querySelector('.grid');
+        sketchBox.replaceChild(makeGrid(size), item);
+        squares = document.querySelectorAll('.square');
+        for (let i = 0; i < squares.length; i++) {
         //squares[i].addEventListener('mouseover', switchClasses);
 
-        if (currentBrush === 'classic') {
-            squares[i].addEventListener('mouseover', changerClassic);
-        }
-        else if (currentBrush === 'rainbow') {
-            squares[i].addEventListener('mouseover', bgRandomColor);
-        }
-        else if (currentBrush === 'fade') {
-            squares[i].addEventListener('mouseover', fadeIn);
-        }
-        else if (currentBrush === 'eraser') {
-            squares[i].addEventListener('mouseover', eraseSquare);
+            if (currentBrush === 'classic') {
+                squares[i].addEventListener('mouseover', changerClassic);
+            }
+            else if (currentBrush === 'rainbow') {
+                squares[i].addEventListener('mouseover', bgRandomColor);
+            }
+            else if (currentBrush === 'fade') {
+                squares[i].addEventListener('mouseover', fadeIn);
+            }
+            else if (currentBrush === 'eraser') {
+                squares[i].addEventListener('mouseover', eraseSquare);
+            }
         }
     }
+    else if (size === null) {
+        return;
+    }
+    else makeNewGrid();
 }    
 //
 /// deprecated
