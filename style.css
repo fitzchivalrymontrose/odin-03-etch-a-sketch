@@ -81,7 +81,7 @@ button {
     border: 1px solid gray;
 }
 
-.square-changed {
+/* .square-changed {
     border: 1px solid gray;
     background-color: #000;
 }
@@ -89,7 +89,7 @@ button {
 #square-changed {
     border: none;
     background-color: #000;
-}
+} */
 
 footer {
 
