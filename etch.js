@@ -62,7 +62,20 @@ function makeNewGrid () {
     }
     squares = document.querySelectorAll('.square');
     for (let i = 0; i < squares.length; i++) {
-        squares[i].addEventListener('mouseover', switchClasses);
+        //squares[i].addEventListener('mouseover', switchClasses);
+
+        if (currentBrush === 'classic') {
+            squares[i].addEventListener('mouseover', changerClassic);
+        }
+        else if (currentBrush === 'rainbow') {
+            squares[i].addEventListener('mouseover', bgRandomColor);
+        }
+        else if (currentBrush === 'fade') {
+            squares[i].addEventListener('mouseover', fadeIn);
+        }
+        else if (currentBrush === 'eraser') {
+            squares[i].addEventListener('mouseover', eraseSquare);
+        }
     }
 }    
 
