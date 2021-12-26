@@ -17,7 +17,16 @@ const sketchBoxBorder = document.querySelector('.sketch-box-outer');
 
 sketchBox.appendChild(makeGrid(16));
 
+let isDrawing = false;
 let currentBrush = '';
+
+sketchBox.addEventListener('click', toggleIsDrawing);
+function toggleIsDrawing () {
+    if (isDrawing === true) {
+        isDrawing = false;
+    }
+    else isDrawing = true;
+}
 
 let squares = document.querySelectorAll('.square');
 for (let i = 0; i < squares.length; i++) {
@@ -71,10 +80,12 @@ function changeClassic(e) {
     }
 }
 function changerClassic(e) {
-    e.target.style.backgroundColor = 'black';
-    //sketchBoxBorder.style.backgroundColor = 'black';
-    //e.target.classList.value = 'square-changed';
-    e.target.removeEventListener('click', changerClassic);
+    if (isDrawing) {
+        e.target.style.backgroundColor = 'black';
+        //sketchBoxBorder.style.backgroundColor = 'black';
+        //e.target.classList.value = 'square-changed';
+        e.target.removeEventListener('click', changerClassic);
+    }
 }
 //
 /// random color button
@@ -91,11 +102,13 @@ function changeBgRandom (e) {
     }
 }
 function bgRandomColor (e) {
-    const rgbColor = rgbRandom();
-    e.target.style.backgroundColor = rgbColor;
-    sketchBoxBorder.style.backgroundColor = rgbColor;
-
-
+    if (isDrawing) {
+        // change square to random rgb color
+        const rgbColor = rgbRandom();
+        e.target.style.backgroundColor = rgbColor;
+        // change border box along with square
+        //sketchBoxBorder.style.backgroundColor = rgbColor;
+    }
 }
 function rgbRandom () {
     const r = Math.floor(Math.random() * 256);
@@ -118,9 +131,11 @@ function changeFadeBrush (e) {
     }
 }
 function fadeIn (e) {
-    e.target.style.backgroundColor = 'darkgray';
-    //sketchBoxBorder.style.backgroundColor = 'darkgray';
-    e.target.removeEventListener('click', fadeIn);
+    if (isDrawing) {
+        e.target.style.backgroundColor = 'darkgray';
+        //sketchBoxBorder.style.backgroundColor = 'darkgray';
+        e.target.removeEventListener('click', fadeIn);
+    }
 }
 //
 /// eraser button
@@ -137,8 +152,10 @@ function turnOnEraser(e) {
     }
 }
 function eraseSquare(e) {
-    e.target.style.backgroundColor = 'white';
-    e.target.removeEventListener('mouseover', eraseSquare);
+    if (isDrawing) {
+        e.target.style.backgroundColor = 'white';
+        e.target.removeEventListener('mouseover', eraseSquare);
+    }
 }
 //
 /// generate inital grid

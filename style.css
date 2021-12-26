@@ -81,7 +81,9 @@ button {
     border: 1px solid gray;
 }
 
-/* .square-changed {
+
+/* deprecated
+.square-changed {
     border: 1px solid gray;
     background-color: #000;
 }
