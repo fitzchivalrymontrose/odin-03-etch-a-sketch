@@ -17,12 +17,38 @@ const sketchBoxBorder = document.querySelector('.sketch-box-outer');
 
 sketchBox.appendChild(makeGrid(16));
 
+let currentBrush = '';
+
 let squares = document.querySelectorAll('.square');
-    for (let i = 0; i < squares.length; i++) {
-        squares[i].addEventListener('mouseover', switchClasses);
+for (let i = 0; i < squares.length; i++) {
+    squares[i].addEventListener('mouseover', switchClasses);
+}
+
+
+function changeBrushTo (brush) {
+    clearListeners(); 
+    switch (currentBrush) {
+        case 'classic': this.addEventListener('mouseover', changerClassic);
+                        break;
+        case 'rainbow': this.addEventListener('mouseover', bgRandomColor);
+                        break;
+        case 'fade': this.addEventListener('mouseover', fadeIn);
+                        break;
+        case 'eraser': this.addEventListener('mouseover', eraseSquare);
+                       break;
+        default: break;
     }
+}
 
-
+function clearListeners () {
+    for (let i = 0; i < squares.length; i++) {
+        squares[i].removeEventListener('mouseover', eraseSquare);
+        squares[i].removeEventListener('mouseover', switchClasses);
+        squares[i].removeEventListener('mouseover', bgRandomColor);
+        squares[i].removeEventListener('mouseover', fadeIn);
+        squares[i].removeEventListener('mouseover', changerClassic);
+    }
+}
 
 // new grid button 
 const clearBtn = document.querySelector('button');
@@ -38,7 +64,9 @@ function makeNewGrid () {
     for (let i = 0; i < squares.length; i++) {
         squares[i].addEventListener('mouseover', switchClasses);
     }
-}
+}    
+
+
 function switchClasses (e) {
     e.target.classList.toggle('square-changed');
     e.target.removeEventListener('mouseover', switchClasses);
@@ -48,7 +76,7 @@ function switchClasses (e) {
 const btnClassic = document.querySelector('.button-classic-black');
 btnClassic.addEventListener('click', changeClassic);
 function changeClassic(e) {
-    console.log(e.target);
+    currentBrush = 'classic';
     for (let i = 0; i < squares.length; i++) {
         squares[i].removeEventListener('mouseover', eraseSquare);
         squares[i].removeEventListener('mouseover', switchClasses);
@@ -59,16 +87,21 @@ function changeClassic(e) {
 }
 function changerClassic(e) {
     e.target.style.backgroundColor = 'black';
-    sketchBoxBorder.style.backgroundColor = 'black';
+    //sketchBoxBorder.style.backgroundColor = 'black';
     e.target.classList.value = 'square-changed';
     e.target.removeEventListener('click', changerClassic);
 }
+
+
+
+
 
 // random color button
 const btnChangeRandom = document.querySelector('.button-change-random');
 btnChangeRandom.addEventListener('click', changeBgRandom);
 
 function changeBgRandom (e) {
+    currentBrush = 'rainbow';
     for (let i = 0; i < squares.length; i++) {
         squares[i].removeEventListener('mouseover', eraseSquare);
         squares[i].removeEventListener('mouseover', switchClasses);
@@ -96,6 +129,7 @@ function rgbRandom () {
 const fadeBtn = document.querySelector('.button-change-fade');
 fadeBtn.addEventListener('click', changeFadeBrush);
 function changeFadeBrush (e) {
+    currentBrush = 'fade';
     for (let i = 0; i < squares.length; i++) {
         squares[i].removeEventListener('mouseover', eraseSquare);
         squares[i].removeEventListener('mouseover', switchClasses);
@@ -106,7 +140,7 @@ function changeFadeBrush (e) {
 }
 function fadeIn (e) {
     e.target.style.backgroundColor = 'darkgray';
-    sketchBoxBorder.style.backgroundColor = 'darkgray';
+    //sketchBoxBorder.style.backgroundColor = 'darkgray';
     e.target.removeEventListener('click', fadeIn);
 }
 
@@ -114,6 +148,7 @@ function fadeIn (e) {
 const eraserBtn = document.querySelector('.button-eraser');
 eraserBtn.addEventListener('click', turnOnEraser);
 function turnOnEraser(e) {
+    currentBrush = 'eraser';
     for (let i = 0; i < squares.length; i++) {
         squares[i].removeEventListener('mouseover', switchClasses);
         squares[i].removeEventListener('mouseover', bgRandomColor);

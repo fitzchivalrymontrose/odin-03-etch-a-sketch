@@ -61,15 +61,20 @@ button {
 }
 
 .sketch-box-inner {
+    overflow: hidden;
     height: 600px;
     width: 600px;
     flex-shrink: 0;
     background-color: #fff;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .grid {
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-start;
+    
 }
 
 .square {
