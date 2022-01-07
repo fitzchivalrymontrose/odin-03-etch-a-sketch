@@ -137,19 +137,28 @@ function changeFadeBrush (e) {
         squares[i].addEventListener('mouseover', fadeIn );
     }
 }
-let fadeLevel = .05;
+
+
+let fadeLevel = 0.0;
 function fadeIn (e) {
     
     let colorValue = `rgba(0, 0, 0, ${fadeLevel})`;
     if (isDrawing) {
-        // if (fadeLevel >= 1) {
-        //     return;
-        // }
-        e.target.style.backgroundColor = colorValue;
-        fadeLevel += .05;
+        if (e.target.style.backgroundColor === '') {
+            e.target.style.backgroundColor = colorValue;
+        }
+        else if (fadeLevel <= 1) {
+            fadeLevel += .05;
+            e.target.style.backgroundColor = colorValue;
+        }
+        else {
+            e.target.style.backgroundColor = colorValue;
+        }
+        
         //sketchBoxBorder.style.backgroundColor = 'darkgray';
         // e.target.removeEventListener('click', fadeIn);
     }
+    console.log(e.target.style.backgroundColor);
 }
 //
 /// eraser button
