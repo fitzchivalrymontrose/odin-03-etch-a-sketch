@@ -137,11 +137,18 @@ function changeFadeBrush (e) {
         squares[i].addEventListener('mouseover', fadeIn );
     }
 }
+let fadeLevel = .05;
 function fadeIn (e) {
+    
+    let colorValue = `rgba(0, 0, 0, ${fadeLevel})`;
     if (isDrawing) {
-        e.target.style.backgroundColor = 'darkgray';
+        // if (fadeLevel >= 1) {
+        //     return;
+        // }
+        e.target.style.backgroundColor = colorValue;
+        fadeLevel += .05;
         //sketchBoxBorder.style.backgroundColor = 'darkgray';
-        e.target.removeEventListener('click', fadeIn);
+        // e.target.removeEventListener('click', fadeIn);
     }
 }
 //
